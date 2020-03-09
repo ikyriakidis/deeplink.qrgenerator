@@ -1,0 +1,17 @@
+﻿@page "/"
+
+@using DeepLink.QrGenerator.Data
+@inject QrService QrService
+
+<h1>QR Code Generator</h1>
+
+<img src="@String.Format("data:image/png;base64,{0}", qrcode)" />
+
+@code {
+    private string qrcode;
+
+    protected override async Task OnInitializedAsync()
+    {
+        qrcode = await QrService.GenereteQR();
+    }
+}
